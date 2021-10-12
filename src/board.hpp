@@ -18,17 +18,24 @@ public:
     }
     
     void initialize();
+    void randomize();
     
-    int *food;
-    int *board[2];
+    ofPixels food;
+    ofPixels board[2];
     int w,h;
     
-    int cur_board;
+    int read_board;
     
     void flipBoard();
+    ofPixels &getWriteBoard() {
+        return board[(read_board + 1) % 2];
+    }
     
-    void getAt(int x, int y, int *channels[3]);
-    
+    void getAt(int x, int y, int *r, int *g, int *b);
+    void getAt(int x, int y, int *rgb);
+    void setAt(int x, int y, int *rgb);
+    void setAt(int x, int y, int r, int g, int b);
+
 private:
     Board() {};
 };
